@@ -730,6 +730,471 @@ summary(model2)</code></pre>
 ## Residuals 98 77.794  0.7938                      
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<p><br></p>
+<hr />
+<br>
+<p class="page-break">
+</p>
+</div>
+</div>
+</div>
+<div id="zusatzliche-analysen" class="section level1">
+<h1>Zusätzliche Analysen</h1>
+<div id="einfluss-von-weiteren-variablen-wie-geschlecht-alter-und-bachelormaster" class="section level2">
+<h2>Einfluss von weiteren Variablen wie Geschlecht, Alter und Bachelor/Master</h2>
+</div>
+</div>
+<div id="korrelation-1" class="section level1">
+<h1>Korrelation</h1>
+<pre class="r"><code># gather data
+regression_data_1 &lt;- dplyr::select(data, MS, RF, SD01, SD02_01, SD16, ST)
+regression_data_2 &lt;- dplyr::select(data, MS, RF, SD01, SD02_01, SD16, VT)</code></pre>
+<p>Es soll nun die Korrelation zwischen den Prädiktoren und den Variablen gezeigt werden.</p>
+<div id="korrelation-variable-stress-1" class="section level2">
+<h2>Korrelation (Variable: Stress)</h2>
+<pre class="r"><code>labels = c(&quot;Mindset&quot;, &quot;Selbstmotivierung&quot;, &quot;Geschlecht&quot;, &quot;Alter&quot;, &quot;Bachelor/Master&quot;, 
+    &quot;Stress&quot;)
+cor_1 &lt;- round(cor(regression_data_1), decimal)
+rownames(cor_1) &lt;- labels
+colnames(cor_1) &lt;- labels
+
+knitr::kable(cor_1, format = &quot;html&quot;, table.attr = &quot;class=\&quot;table-th-left\&quot;&quot;)</code></pre>
+<table class="table-th-left">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Mindset
+</th>
+<th style="text-align:right;">
+Selbstmotivierung
+</th>
+<th style="text-align:right;">
+Geschlecht
+</th>
+<th style="text-align:right;">
+Alter
+</th>
+<th style="text-align:right;">
+Bachelor/Master
+</th>
+<th style="text-align:right;">
+Stress
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mindset
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Selbstmotivierung
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+<td style="text-align:right;">
+-0.37
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Geschlecht
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alter
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bachelor/Master
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Stress
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+-0.37
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="korrelation-variable-vitalitat-1" class="section level2">
+<h2>Korrelation (Variable: Vitalität)</h2>
+<pre class="r"><code>labels = c(&quot;Mindset&quot;, &quot;Selbstmotivierung&quot;, &quot;Geschlecht&quot;, &quot;Alter&quot;, &quot;Bachelor/Master&quot;, 
+    &quot;Vitalität&quot;)
+cor_2 &lt;- round(cor(regression_data_2), decimal)
+rownames(cor_2) &lt;- labels
+colnames(cor_2) &lt;- labels
+
+knitr::kable(cor_2, format = &quot;html&quot;, table.attr = &quot;class=\&quot;table-th-left\&quot;&quot;)</code></pre>
+<table class="table-th-left">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Mindset
+</th>
+<th style="text-align:right;">
+Selbstmotivierung
+</th>
+<th style="text-align:right;">
+Geschlecht
+</th>
+<th style="text-align:right;">
+Alter
+</th>
+<th style="text-align:right;">
+Bachelor/Master
+</th>
+<th style="text-align:right;">
+Vitalität
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Mindset
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Selbstmotivierung
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Geschlecht
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alter
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bachelor/Master
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Vitalität
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+1.00
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="regressionsanalyse-1" class="section level1">
+<h1>Regressionsanalyse</h1>
+<p>Nun soll versucht werden einen Zusammenhang zwischen Prädiktoren und Variablen mittels Regressionsanalysen herzustellen.</p>
+<pre class="r"><code># Standardize regression_data
+regression_data_1_scaled &lt;- data.frame(scale(regression_data_1))
+regression_data_2_scaled &lt;- data.frame(scale(regression_data_2))</code></pre>
+<div id="multiple-regression-variable-stress-1" class="section level2">
+<h2>Multiple Regression (Variable: Stress)</h2>
+<pre class="r"><code>model1 &lt;- lm(ST ~ MS + RF + SD01 + SD02_01 + SD16, data = regression_data_1_scaled)
+summary(model1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = ST ~ MS + RF + SD01 + SD02_01 + SD16, data = regression_data_1_scaled)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.21366 -0.64014  0.06315  0.65822  1.93391 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  1.400e-16  9.230e-02   0.000 1.000000    
+## MS           1.276e-01  9.428e-02   1.353 0.179195    
+## RF          -3.914e-01  9.758e-02  -4.011 0.000121 ***
+## SD01        -1.047e-01  9.883e-02  -1.060 0.291999    
+## SD02_01     -1.435e-01  1.233e-01  -1.164 0.247455    
+## SD16         4.351e-02  1.261e-01   0.345 0.730743    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9276 on 95 degrees of freedom
+## Multiple R-squared:  0.1827, Adjusted R-squared:  0.1396 
+## F-statistic: 4.246 on 5 and 95 DF,  p-value: 0.001579</code></pre>
+<pre class="r"><code>model1_coef &lt;- round(coef(model1), decimal)</code></pre>
+<div id="anova-2" class="section level3">
+<h3>ANOVA</h3>
+<pre class="r"><code>anova(model1)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: ST
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## MS         1  0.644  0.6440  0.7485    0.3891    
+## RF         1 14.468 14.4681 16.8164 8.685e-05 ***
+## SD01       1  1.756  1.7557  2.0407    0.1564    
+## SD02_01    1  1.296  1.2959  1.5062    0.2227    
+## SD16       1  0.102  0.1025  0.1191    0.7307    
+## Residuals 95 81.734  0.8604                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div id="multiple-regression-variable-vitalitat-1" class="section level2">
+<h2>Multiple Regression (Variable: Vitalität)</h2>
+<pre class="r"><code>model2 &lt;- lm(VT ~ MS + RF + SD01 + SD02_01 + SD16, data = regression_data_2_scaled)
+summary(model2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = VT ~ MS + RF + SD01 + SD02_01 + SD16, data = regression_data_2_scaled)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.57307 -0.54208  0.02665  0.61717  2.14244 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 4.594e-17  8.871e-02   0.000    1.000    
+## MS          4.460e-02  9.062e-02   0.492    0.624    
+## RF          4.525e-01  9.379e-02   4.824 5.35e-06 ***
+## SD01        1.276e-01  9.499e-02   1.343    0.182    
+## SD02_01     2.416e-02  1.186e-01   0.204    0.839    
+## SD16        7.040e-02  1.212e-01   0.581    0.563    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.8915 on 95 degrees of freedom
+## Multiple R-squared:  0.2449, Adjusted R-squared:  0.2052 
+## F-statistic: 6.162 on 5 and 95 DF,  p-value: 5.467e-05</code></pre>
+<pre class="r"><code>model2_coef &lt;- round(coef(model2), decimal)</code></pre>
+<div id="anova-3" class="section level3">
+<h3>ANOVA</h3>
+<pre class="r"><code>anova(model2)</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: VT
+##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## MS         1  0.947  0.9466  1.1909    0.2779    
+## RF         1 21.260 21.2597 26.7470 1.285e-06 ***
+## SD01       1  1.569  1.5687  1.9736    0.1633    
+## SD02_01    1  0.447  0.4466  0.5619    0.4554    
+## SD16       1  0.268  0.2683  0.3376    0.5626    
+## Residuals 95 75.510  0.7948                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <hr />
 <div id="bernhard-wittmann" class="section level6 text-align-right">
 <h6><em>Bernhard Wittmann</em></h6>
